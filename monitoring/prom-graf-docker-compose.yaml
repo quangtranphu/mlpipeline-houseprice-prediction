@@ -1,0 +1,149 @@
+# Source: https://grafana.com/docs/grafana-cloud/quickstart/docker-compose-linux/
+version: '3.8'
+
+networks:
+  storage_monitoring:
+    external: true 
+
+volumes:
+  prometheus_data:
+  grafana_data:
+  alertmanager_data:
+  # minio_data:
+
+services:
+  node-exporter:
+    image: prom/node-exporter:v1.3.1
+    container_name: node-exporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    ports:
+      - 9100:9100
+    networks:
+      - storage_monitoring
+
+  prometheus:
+    image: prom/prometheus:v2.38.0
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - prometheus_data:/prometheus
+      - ./prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/config/alert-rules.yml:/etc/prometheus/alert-rules.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=20h'
+      - '--web.enable-lifecycle'
+    ports:
+      - 9090:9090
+    networks:
+      - storage_monitoring
+
+  # minio:
+  #   image: quay.io/minio/minio:latest      
+  #   container_name: minio         
+  #   ports:
+  #     - "9000:9000"
+  #     - "9001:9001"        
+  #   environment:
+  #     MINIO_ROOT_USER: ${MINIO_ROOT_USER}      
+  #     MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD} 
+  #   volumes:
+  #     - minio_data:/data 
+  #   networks:
+  #     - storage_monitoring 
+  #   command: server /data --console-address ":9001"
+
+  demo-metrics:
+    build: 
+      context: ../model_api
+      dockerfile: Dockerfile
+    image: demo-metrics:v0.1
+    container_name: demo-metrics
+    env_file:
+      - .env 
+    # environment:
+    #   - OTEL_SERVICE_NAME=demo-metrics
+    #   - OTEL_TRACES_EXPORTER=jaeger
+    #   - OTEL_EXPORTER_JAEGER_AGENT_HOST=jaeger
+    #   - OTEL_EXPORTER_JAEGER_AGENT_PORT=6831
+    # command: >
+    #   opentelemetry-instrument
+    #   uvicorn main:app --host 0.0.0.0 --port 8000
+    restart: unless-stopped
+    ports:
+      - 30000:30000
+      - 8099:8099
+    networks:
+      - storage_monitoring
+
+  alertmanager:
+    image: prom/alertmanager:v0.25.0
+    container_name: alertmanager
+    restart: unless-stopped
+    volumes:
+      - alertmanager_data:/alertmanager/data
+      - ./alertmanager:/alertmanager
+    command:
+      - '--config.file=/alertmanager/config.yml'
+      - '--storage.path=/alertmanager/data'
+      - '--log.level=debug'
+    ports:
+      - 9093:9093
+    networks:
+      - storage_monitoring
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    restart: unless-stopped
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+    ports:
+      - 8090:8080
+    networks:
+      - storage_monitoring
+
+  grafana:
+    image: grafana/grafana:9.0.5
+    container_name: grafana
+    restart: unless-stopped
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/config/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
+      - ./grafana/config/datasources.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
+      - ./grafana/dashboards:/opt/grafana/dashboards
+    environment:
+      - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+    ports:
+      - 3000:3000
+    networks:
+      - storage_monitoring
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f localhost:3000/api/health && echo 'ready'"]
+      interval: 10s
+      retries: 10         
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.47
+    container_name: jaeger
+    restart: unless-stopped
+    ports:
+      - "6831:6831/udp"
+      - "16686:16686"
+    networks:
+      - storage_monitoring

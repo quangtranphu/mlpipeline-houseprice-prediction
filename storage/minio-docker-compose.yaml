@@ -1,0 +1,40 @@
+version: "3.9"
+
+networks:
+  monitoring:
+
+services:
+  minio:
+    image: quay.io/minio/minio:latest      
+    container_name: minio         
+    ports:
+      - "9000:9000"
+      - "9001:9001"        
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}      
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD} 
+    volumes:
+      - minio_data:/data 
+    command: server /data --console-address ":9001"
+    networks:
+      - monitoring 
+
+  mc:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+        sleep 5 &&
+        mc alias set myminio http://minio:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD} &&
+        mc mb -p myminio/models || true &&
+        mc cp /model/model.pkl myminio/models/ &&
+        exit 0
+      "
+    volumes:
+      - ../model_api/models:/model 
+    networks:
+      - monitoring
+
+volumes:
+  minio_data: 

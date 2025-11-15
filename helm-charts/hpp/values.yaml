@@ -1,0 +1,4 @@
+image:
+  repository: quangtp/house-price-prediction-api
+  tag: latest
+  pullPolicy: Always

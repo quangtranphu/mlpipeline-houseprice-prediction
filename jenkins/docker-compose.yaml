@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  jenkins:
+    build:
+      context: ./custom_jenkins/
+      dockerfile: Dockerfile-custom
+    image: quangtp/custom-jenkins:latest 
+    container_name: jenkins
+    restart: unless-stopped
+    privileged: true
+    user: root
+    ports:
+      - 8081:8080
+      - 50000:50000
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./jcasc:/var/jenkins_home/casc_configs
+      - /home/jenkins/.kube/config:/var/jenkins_home/.kube/config:ro  # mount kubeconfig
+      - ./ca.crt:/var/jenkins_home/certs/ca.crt:ro   # <- mount CA file
+    env_file:
+      - .env 
+    environment:
+      # JAVA_OPTS: >-
+      #   -DKUBERNETES_SERVER_URL=${K8S_SERVER_URL}
+      #   -DKUBERNETES_NAMESPACE=${K8S_NAMESPACE}
+      #   -DKUBERNETES_OAUTH_TOKEN=${K8S_SA_TOKEN}
+      #   -DKUBERNETES_CA_CERT_FILE=/var/jenkins_home/certs/ca.crt
+      #   -DKUBERNETES_AUTH_TRYKUBECONFIG=false
+      #   -DKUBERNETES_AUTH_TRYSERVICEACCOUNT=false
+      CASC_JENKINS_CONFIG: /var/jenkins_home/casc_configs/jenkins.yaml
+      KUBECONFIG: /var/jenkins_home/.kube/config
+
+volumes:
+  jenkins_home:

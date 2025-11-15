@@ -1,0 +1,33 @@
+# FastAPI server
+fastapi==0.96.0
+uvicorn[standard]==0.22.0
+python-multipart==0.0.6
+
+# OCR + Torch
+torch==2.0.1
+torchvision==0.15.2+cpu   # CPU-only, tương thích torch 2.3.1
+easyocr==1.7.0
+Pillow==10.4.0
+numpy==2.1.1
+
+# Logging
+loguru==0.7.0
+
+# Prometheus metrics
+prometheus-client==0.17.1
+opentelemetry-api==1.19.0
+opentelemetry-sdk==1.19.0
+opentelemetry-instrumentation-fastapi==0.40b0
+opentelemetry-instrumentation-requests==0.40b0
+opentelemetry-instrumentation-logging==0.40b0
+opentelemetry-exporter-prometheus==1.12.0rc1
+
+# Jaeger tracing
+opentelemetry-exporter-jaeger==1.19.0
+opentelemetry-exporter-otlp-proto-grpc==1.19.0
+
+# MinIO client
+minio==7.2.7
+
+# PyTorch CPU index
+-f https://download.pytorch.org/whl/cpu/torch_stable.html

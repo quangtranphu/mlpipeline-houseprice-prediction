@@ -1,0 +1,40 @@
+# Stage 1: Get docker CLI binary
+FROM docker:27-cli AS dockercli
+
+# Stage 2: Jenkins base slim version
+FROM jenkins/jenkins:lts-slim-jdk17
+
+USER root
+
+# Set versions for reproducibility
+ENV KUBECTL_VERSION=v1.31.1
+ENV HELM_VERSION=v3.16.1
+
+# Copy docker CLI from stage 1 to Jenkins image
+COPY --from=dockercli /usr/local/bin/docker /usr/local/bin/docker
+
+# Optional: git, curl... installation if necessary
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      git curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install kubectl
+RUN curl -sSL -o /usr/local/bin/kubectl \
+      https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
+    && chmod +x /usr/local/bin/kubectl
+
+# Install helm
+RUN curl -sSL https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz \
+    | tar -xz -C /tmp \
+    && mv /tmp/linux-amd64/helm /usr/local/bin/helm \
+    && rm -rf /tmp/*
+
+# Copy entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+# Back to jenkins user
+USER jenkins
+
+# Override entrypoint
+# ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
