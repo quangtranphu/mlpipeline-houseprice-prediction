@@ -27,7 +27,7 @@ services:
       #   -DKUBERNETES_OAUTH_TOKEN=${K8S_SA_TOKEN}
       #   -DKUBERNETES_CA_CERT_FILE=/var/jenkins_home/certs/ca.crt
       #   -DKUBERNETES_AUTH_TRYKUBECONFIG=false
-      #   -DKUBERNETES_AUTH_TRYSERVICEACCOUNT=false
+      #   -DKUBERNETES_AUTH_TRYSERVICEACCOUNT=true
       CASC_JENKINS_CONFIG: /var/jenkins_home/casc_configs/jenkins.yaml
       KUBECONFIG: /var/jenkins_home/.kube/config
 
