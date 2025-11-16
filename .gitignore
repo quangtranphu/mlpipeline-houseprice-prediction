@@ -3,3 +3,5 @@
 *.png
 secrets/
 .terraform/
+ca.crt
+minio-secret.yaml

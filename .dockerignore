@@ -1,3 +1,4 @@
 *.env
 *.jpg
 secrets
+ca.crt

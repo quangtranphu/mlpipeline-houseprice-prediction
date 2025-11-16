@@ -1,4 +1,10 @@
 image:
-  repository: quangtp/house-price-prediction-api
-  tag: latest
+  repository: quangtp/demo-metrics
+  tag: v0.2
   pullPolicy: Always
+
+env:
+  MINIO_ENDPOINT: "minio:9000" #replaced by local IP
+  MINIO_BUCKET: "models"
+  MINIO_OBJECT: "model.pkl"
+  LOCAL_MODEL_PATH: "/tmp/model.pkl"

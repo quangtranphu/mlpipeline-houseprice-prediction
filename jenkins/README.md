@@ -19,6 +19,8 @@ gcloud container clusters get-credentials inner-replica-469607-h9-new-gke --zone
 
 kubectl config view --raw --minify --flatten -o jsonpath='{.clusters[0].cluster.certificate-authority-data}' | base64 --decode > ca.crt
 
+kubectl create sa jenkins -n model-serving
+
 kubectl create secret generic jenkins-sa-secret \
   --from-literal=token=$(kubectl create token jenkins -n model-serving) \
   --from-file=ca.crt=ca.crt \
@@ -26,5 +28,12 @@ kubectl create secret generic jenkins-sa-secret \
 
 kubectl get secret jenkins-sa-secret -n model-serving -o jsonpath='{.data.token}' | base64 --decode
 
+kubectl create token jenkins -n model-serving #copy content to .env file, K8S_SA_TOKEN
+
 # kubectl create secret generic jenkins-token   --from-literal=token=$(openssl rand -hex 16)   -n model-serving
 ```
+
+kubectl create secret generic model-api-secrets \
+  --from-literal=MINIO_ACCESS_KEY=root \
+  --from-literal=MINIO_SECRET_KEY=password \
+  -n model-serving

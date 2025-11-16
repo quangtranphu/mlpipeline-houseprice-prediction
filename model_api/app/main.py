@@ -21,12 +21,12 @@ from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
 MINIO_ENDPOINT = os.getenv("MINIO_ENDPOINT")
 MINIO_ACCESS_KEY = os.getenv("MINIO_ACCESS_KEY")
 MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY")
-BUCKET_NAME = os.getenv("MINIO_BUCKET")
-OBJECT_NAME = os.getenv("MINIO_OBJECT")
-LOCAL_PATH = os.getenv("LOCAL_MODEL_PATH", "/tmp/model.pkl")
+MINIO_BUCKET = os.getenv("MINIO_BUCKET")
+MINIO_OBJECT = os.getenv("MINIO_OBJECT")
+LOCAL_MODEL_PATH = os.getenv("LOCAL_MODEL_PATH", "/tmp/model.pkl")
 
 def load_model_from_minio():
-    # Tạo client MinIO
+
     client = Minio(
         MINIO_ENDPOINT,
         access_key=MINIO_ACCESS_KEY,
@@ -34,14 +34,9 @@ def load_model_from_minio():
         secure=False
     )
 
-    # Tải file từ MinIO về local path
-    client.fget_object(
-        BUCKET_NAME,
-        OBJECT_NAME,
-        LOCAL_PATH
-    )
+    client.fget_object(MINIO_BUCKET, MINIO_OBJECT, LOCAL_MODEL_PATH)
 
-    model = joblib.load(LOCAL_PATH)
+    model = joblib.load(LOCAL_MODEL_PATH)
     return model
 
 # Creating FastAPI instance

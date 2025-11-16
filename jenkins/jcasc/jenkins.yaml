@@ -1,0 +1,60 @@
+jenkins:
+  systemMessage: "Configured by JCasC for external Jenkins with K8s Cloud"
+
+  # jobs:
+  # - org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject:
+  #     factory:
+  #       scriptPath: "jenkins/Jenkinsfile"
+
+  clouds:
+    - kubernetes:
+        name: "${K8S_CLOUD_NAME}"
+        serverUrl: "${K8S_SERVER_URL}"
+        namespace: "${K8S_NAMESPACE}"
+        containerCapStr: "10"
+        jenkinsUrl: "${JENKINS_URL}"
+        skipTlsVerify: false
+        serverCertificate: ${readFile:/var/jenkins_home/certs/ca.crt}
+        credentialsId: "${K8S_CRED_ID}"
+        webSocket: true
+        # templates:
+        #   - name: "${K8S_AGENT_LABEL}"
+        #     label: "${K8S_AGENT_LABEL}"
+        #     serviceAccount: "${K8S_SERVICE_ACCOUNT}"
+        #     containers:
+        #       - name: jnlp
+        #         image: "${K8S_AGENT_IMAGE}"
+        #         args: "^${computer.jnlpmac} ^${computer.name}"
+        #         ttyEnabled: true
+        #         workingDir: "/home/jenkins"
+
+credentials:
+  system:
+    domainCredentials:
+      - domain:
+          name: "global"
+          description: "Global credentials"
+          specifications: []
+        credentials:
+          # GitHub/GitLab credentials
+          - usernamePassword:
+              scope: GLOBAL
+              id: "github"
+              description: "GitHub/GitLab credentials"
+              username: ${GIT_USER}
+              password: ${GIT_PASSWORD}
+
+          # Docker Registry credentials
+          - usernamePassword:
+              scope: GLOBAL
+              id: "dockerhub"
+              description: "Docker Hub/Registry credentials"
+              username: ${DOCKER_USER}
+              password: ${DOCKER_PASSWORD}
+
+          # Kubernetes ServiceAccount token
+          - string:
+              scope: GLOBAL
+              id: "${K8S_CRED_ID}"
+              description: "Kubernetes ServiceAccount token"
+              secret: "${K8S_SA_TOKEN}"
