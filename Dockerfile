@@ -5,12 +5,9 @@ FROM python:3.8
 WORKDIR /app
 
 # Copy necessary files to our app
-COPY ./app /app
+COPY ./model_api/app /app
 
-COPY ./requirements.txt /app
-
-# Set MODEL_DIR env variable
-ENV MODEL_PATH /app/models/model.pkl
+COPY ./model_api/requirements.txt /app
 
 # Port will be exposed, for documentation only
 EXPOSE 30000
