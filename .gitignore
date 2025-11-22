@@ -5,3 +5,6 @@ secrets/
 .terraform/
 ca.crt
 minio-secret.yaml
+.terraform.tfstate.lock.info
+terraform.tfstate
+terraform.tfstate.backup
