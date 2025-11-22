@@ -1,6 +1,6 @@
 This tutorial shows how to deploy a simple house price prediction model.
 
-## Prerequisites
+## I. Prerequisites
 
 This document describes the required tools and environments along with official installation guides. Please ensure all tools below are properly installed before proceeding.
 
@@ -162,15 +162,15 @@ cat ~/.ssh/id_ed25519.pub
 
 ---
 
-## How-to Guide
+## II. How-to Guide
 
-### Start Jenkins service locally
+### 1. Start Jenkins service locally
 ```shell
 docker compose -f jenkins/docker-compose.yaml up -d
 ```
 You can find the password for `admin` at the path `/var/jenkins_home/secrets/initialAdminPassword` in the container Jenkins.
 
-### Start your cloud infrastructure
+### 2. Start your cloud infrastructure
 ```shell
 cd iac/terraform_aws/ 
 or cd iac/terraform_gcp/
@@ -179,7 +179,7 @@ terraform plan
 terraform apply
 ```
 
-### Connect to cluster
+### 3. Connect to cluster
 ```shell
 #GCP
 gcloud container clusters get-credentials inner-replica-469607-h9-new-gke --zone europe-west3-a --project inner-replica-469607-h9
@@ -225,12 +225,12 @@ kubectl create secret generic model-api-secrets \
   --from-literal=MINIO_SECRET_KEY=password \
   -n model-serving
 ```
-### Create MinIO to host model
+### 4. Create MinIO to host model
 ```shell
 kubectl apply -f minio-k8s/
 ```
 
-### Helm charts
+### 5. Helm charts
 
 #### For model API
 ```shell
@@ -248,7 +248,7 @@ helm install prometheus prometheus-community/kube-prometheus-stack
 helm install prometheus prometheus-community/kube-prometheus-stack --version "9.4.1"
 ```
 
-### Push the whole code to Github for automatic deployment
+### 6. Push the whole code to Github for automatic deployment
 ```shell
 git add --all
 git commit -m "first attempt to deploy the model"
