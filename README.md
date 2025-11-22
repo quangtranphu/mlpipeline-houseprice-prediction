@@ -254,4 +254,4 @@ git add --all
 git commit -m "first attempt to deploy the model"
 git push origin your_branch
 
-![System Architecture](./architecture.png)
+![System Architecture](architecture.png)
