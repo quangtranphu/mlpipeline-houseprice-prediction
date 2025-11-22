@@ -13,6 +13,7 @@ You can find the password for `admin` at the path `/var/jenkins_home/secrets/ini
 git add --all
 git commit -m "first attempt to deploy the model"
 git push origin your_branch
+```
 
 ### Example .env file
 ```shell

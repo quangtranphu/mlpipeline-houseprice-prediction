@@ -1,17 +1,12 @@
 # How-to Guide
 
-## Deploy NGINX-ingress
+## Containerize model API
 ```shell
-kubectl create ns nginx-system
-kubens nginx-system
-cd deployments/nginx-ingress
-helm upgrade --install nginx-ingress .
-```
-
-## Deploy model
-```shell
-kubectl create ns model-serving
-kubens model-serving
-cd deployments/hpp
-helm upgrade --install hpp .
+# .env file
+MINIO_ENDPOINT=minio:9000 # MinIO API endpoint
+MINIO_ACCESS_KEY=
+MINIO_SECRET_KEY=
+MINIO_BUCKET=models
+MINIO_OBJECT=model.pkl
+LOCAL_MODEL_PATH=/tmp/model.pkl
 ```

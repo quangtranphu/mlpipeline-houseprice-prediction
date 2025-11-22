@@ -19,13 +19,18 @@ terraform apply
 
 ### Connect to cluster
 ```shell
+#GCP
 gcloud container clusters get-credentials inner-replica-469607-h9-new-gke --zone europe-west3-a --project inner-replica-469607-h9
 
+#AWS
 aws eks update-kubeconfig --region region-code --name my-cluster
+
+#Verify cluster connection
+kubectl get nodes
 ```
 #### Create service account for cluster
-#Get the cluster CA certificate
 ```shell
+#Get the cluster CA certificate
 kubectl config view --raw --minify -o jsonpath='{.clusters[*].cluster.certificate-authority-data}' | base64 --decode > jenkins/ca.crt
 
 #Create namespace model-serving
@@ -50,7 +55,7 @@ kubectl create secret generic jenkins-sa-secret \
 kubectl get secret jenkins-sa-secret -n model-serving -o jsonpath='{.data.token}' | base64 --decode
 
 #Get the SA token to use directly in a .env file for Jenkins
-kubectl create token jenkins -n model-serving  # Copy the output to K8S_SA_TOKEN
+kubectl create token jenkins -n model-serving  # Copy output to K8S_SA_TOKEN
 
 #Create a secret for the model API (MinIO credentials)
 kubectl create secret generic model-api-secrets \
@@ -60,8 +65,7 @@ kubectl create secret generic model-api-secrets \
 ```
 ### Create MinIO to host model
 ```shell
-# Back to project's root folder
-docker compose -f minio-k8s/
+kubectl apply -f minio-k8s/
 ```
 
 ### Helm charts
