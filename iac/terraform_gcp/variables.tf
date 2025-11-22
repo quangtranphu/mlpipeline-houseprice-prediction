@@ -48,6 +48,6 @@ variable "firewall_name" {
 }
 
 variable "ssh_keys" {
-  description = "value of the ssh key"
+  description = "Name of the ssh key file"
   default = "jenkins_tut"
 }
