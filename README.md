@@ -253,3 +253,5 @@ helm install prometheus prometheus-community/kube-prometheus-stack --version "9.
 git add --all
 git commit -m "first attempt to deploy the model"
 git push origin your_branch
+
+![System Architecture](./architecture.png)

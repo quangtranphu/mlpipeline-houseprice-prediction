@@ -1,6 +1,5 @@
 .env
 *.jpg
-*.png
 secrets/
 .terraform/
 ca.crt
