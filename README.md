@@ -1,4 +1,4 @@
-![System Architecture](architecture.png)
+![System Architecture](sys_arch.png)
 
 This tutorial shows how to deploy a simple house price prediction model.
 
