@@ -14,35 +14,36 @@ git add --all
 git commit -m "first attempt to deploy the model"
 git push origin your_branch
 
-# Connect to GKE
-gcloud container clusters get-credentials inner-replica-469607-h9-new-gke --zone europe-west3-a --project inner-replica-469607-h9
+### Example .env file
+```shell
+jenkins_admin_user=
+jenkins_admin_pwd=
+jenkins_user=
+jenkins_pwd=
 
-#Get the cluster CA certificate
-kubectl config view --raw --minify -o jsonpath='{.clusters[*].cluster.certificate-authority-data}' | base64 --decode > jenkins/ca.crt
+JENKINS_URL= #change this link if re-created
 
-# Create namespace model-serving
-kubectl create ns model-serving
+DOCKER_USER=
+DOCKER_PASSWORD=
 
-#Create a ServiceAccount for Jenkins
-kubectl create sa jenkins -n model-serving
+GIT_USER=
+GIT_PASSWORD= #access token
 
-#Apply ClusterRoleBinding for the Jenkins SA
-kubectl apply -f jenkins/jenkins-sa.yaml   # This file should bind the 'jenkins' SA to cluster-admin role
+# Kubernetes cluster credentials
+# -------------------------------
+K8S_CRED_ID=            # Jenkins credential ID for K8s cluster
+K8S_SERVER_URL=  # Kubernetes API server URL - change this if change cluster
+K8S_NAMESPACE=             # Namespace containing the Jenkins Service Account
+K8S_SECRET=
 
-#Create a secret containing the SA token and CA certificate
-kubectl create secret generic jenkins-sa-secret \
-  --from-literal=token=$(kubectl create token jenkins -n model-serving) \
-  --from-file=ca.crt=jenkins/ca.crt \
-  -n model-serving
+#change k8s SA token if new cluster created
+K8S_SA_TOKEN=
+K8S_SERVICE_ACCOUNT=
 
-#Verify the token inside the secret
-kubectl get secret jenkins-sa-secret -n model-serving -o jsonpath='{.data.token}' | base64 --decode
-
-#Get the SA token to use directly in a .env file for Jenkins
-kubectl create token jenkins -n model-serving  # Copy the output to K8S_SA_TOKEN
-
-#Create a secret for the model API (MinIO credentials)
-kubectl create secret generic model-api-secrets \
-  --from-literal=MINIO_ACCESS_KEY=root \
-  --from-literal=MINIO_SECRET_KEY=password \
-  -n model-serving
+# -------------------------------
+# Jenkins Kubernetes agent
+# -------------------------------
+K8S_CLOUD_NAME=              # Name of the Kubernetes Cloud in Jenkins JCasC
+K8S_AGENT_LABEL=               # Label used in pipeline for the agent pod
+K8S_AGENT_IMAGE=  # Image of the Jenkins agent (kubectl + helm)
+```

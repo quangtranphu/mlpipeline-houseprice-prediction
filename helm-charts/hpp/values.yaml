@@ -1,8 +1,10 @@
+# Repo metadata to pull
 image:
   repository: quangtp/demo-metrics
   tag: latest
   pullPolicy: Always
 
+# Env var to access minio storage
 env:
   MINIO_ENDPOINT: "minio:9000" #replaced by local IP
   MINIO_BUCKET: "models"

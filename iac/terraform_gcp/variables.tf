@@ -49,5 +49,5 @@ variable "firewall_name" {
 
 variable "ssh_keys" {
   description = "value of the ssh key"
-  default = "quangtp29:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB4sU+PKdtK00FPEhtjnk3nAHMFYCPCmCQ+PEa4J/UJ4 quangtp29@gmail.com"
+  default = "jenkins_tut"
 }

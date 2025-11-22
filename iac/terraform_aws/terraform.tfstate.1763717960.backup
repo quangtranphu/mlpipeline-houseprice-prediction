@@ -1,0 +1,555 @@
+{
+  "version": 4,
+  "terraform_version": "1.9.7",
+  "serial": 95,
+  "lineage": "dc2c4e53-6b0f-afb5-7017-bb6f0708072c",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "google_container_cluster",
+      "name": "quangtp-gke",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "addons_config": [
+              {
+                "cloudrun_config": [],
+                "config_connector_config": [],
+                "dns_cache_config": [],
+                "gce_persistent_disk_csi_driver_config": [
+                  {
+                    "enabled": true
+                  }
+                ],
+                "gcp_filestore_csi_driver_config": [],
+                "gcs_fuse_csi_driver_config": [],
+                "gke_backup_agent_config": [],
+                "horizontal_pod_autoscaling": [],
+                "http_load_balancing": [],
+                "network_policy_config": [
+                  {
+                    "disabled": true
+                  }
+                ]
+              }
+            ],
+            "allow_net_admin": null,
+            "authenticator_groups_config": [],
+            "binary_authorization": [
+              {
+                "enabled": false,
+                "evaluation_mode": ""
+              }
+            ],
+            "cluster_autoscaling": [
+              {
+                "auto_provisioning_defaults": [],
+                "enabled": false,
+                "resource_limits": []
+              }
+            ],
+            "cluster_ipv4_cidr": "10.32.0.0/14",
+            "confidential_nodes": [],
+            "cost_management_config": [],
+            "database_encryption": [
+              {
+                "key_name": "",
+                "state": "DECRYPTED"
+              }
+            ],
+            "datapath_provider": "",
+            "default_max_pods_per_node": 110,
+            "default_snat_status": [
+              {
+                "disabled": false
+              }
+            ],
+            "deletion_protection": false,
+            "description": "",
+            "dns_config": [],
+            "enable_autopilot": false,
+            "enable_intranode_visibility": false,
+            "enable_k8s_beta_apis": [],
+            "enable_kubernetes_alpha": false,
+            "enable_l4_ilb_subsetting": false,
+            "enable_legacy_abac": false,
+            "enable_shielded_nodes": true,
+            "enable_tpu": false,
+            "endpoint": "34.89.221.251",
+            "gateway_api_config": [],
+            "id": "projects/inner-replica-469607-h9/locations/europe-west3-a/clusters/inner-replica-469607-h9-new-gke",
+            "initial_node_count": 1,
+            "ip_allocation_policy": [
+              {
+                "additional_pod_ranges_config": [],
+                "cluster_ipv4_cidr_block": "10.32.0.0/14",
+                "cluster_secondary_range_name": "gke-inner-replica-469607-h9-new-gke-pods-385b612a",
+                "pod_cidr_overprovision_config": [
+                  {
+                    "disabled": false
+                  }
+                ],
+                "services_ipv4_cidr_block": "34.118.224.0/20",
+                "services_secondary_range_name": "",
+                "stack_type": "IPV4"
+              }
+            ],
+            "label_fingerprint": "a9dc16a7",
+            "location": "europe-west3-a",
+            "logging_config": [
+              {
+                "enable_components": [
+                  "SYSTEM_COMPONENTS",
+                  "WORKLOADS"
+                ]
+              }
+            ],
+            "logging_service": "logging.googleapis.com/kubernetes",
+            "maintenance_policy": [],
+            "master_auth": [
+              {
+                "client_certificate": "",
+                "client_certificate_config": [
+                  {
+                    "issue_client_certificate": false
+                  }
+                ],
+                "client_key": "",
+                "cluster_ca_certificate": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVMVENDQXBXZ0F3SUJBZ0lSQU55bGw5T3N0eVJOQzk2OENneTJQMHN3RFFZSktvWklodmNOQVFFTEJRQXcKTHpFdE1Dc0dBMVVFQXhNa01EVmtOakE1TlRjdE1UTTRZaTAwTlRnMkxUbGxOamd0WVRFMU9HRmxaVEEyWlRsbQpNQ0FYRFRJMU1URXhOakV4TVRNd05sb1lEekl3TlRVeE1UQTVNVEl4TXpBMldqQXZNUzB3S3dZRFZRUURFeVF3Ck5XUTJNRGsxTnkweE16aGlMVFExT0RZdE9XVTJPQzFoTVRVNFlXVmxNRFpsT1dZd2dnR2lNQTBHQ1NxR1NJYjMKRFFFQkFRVUFBNElCandBd2dnR0tBb0lCZ1FDelVEaFlhRDVtK0NBZDNrY2Y0SmNxWVJqMld0dWh0NUZmUGVSYgpFSWdsS2piVWdXRlFNRldMSm1saEFDVmQ2ZHMyMVVUL2VGQVZjWkNMRFRHYnNQdmlJb016NkxtcEkzMW9ZaVdMCkZVMThuWkJJek04Z1FUaVAvdjlSTmdQdUxFcE9ucGJLblN6SlpvemtJaXJpSTB1dDl0dDBCTjdyV1FVYi9nVUoKa1ZxNWg3K3Z6bm1EcFBPZHAyYnJUVFVqODkxTlBCV3J5Zit4cXU0d0xONmZYQ2VHdC9UeFdra1hoejFmcGIvdgpWc2JXeGFtbWR6ZTZpblZOYitlOHdYRWE4S0I5Wi9PNVdvVjBWTXc2QUU5WExDMVBxWENjczhDbHpYNDdWVUxDCjJsYi96Q2RaZUgrVUN4Wi9SN3R4LytoOXRLQmtQRUtMZ0gxYldXYnJOZXdJK1ZzMTFyS3hBWm1VcEpQSjF4U2IKL29RL21NaUhiN1dmajlFeHlacXhQeWRsb0NDdFliUjVVSnNEM0xVYVlUN0NRcWpBMDVvR1BTVUxDQ08zN2MrVwpVc0lBbXl2MU1EeTZqQVBTMEd3eWxFY2YzeGhzRUdnK3NZZmxSZEtDRDVoNllIWUNHSy9RUWJIVXpVbTJqNU5ZCnVUNGU1SWZJdjB0TDhTRW5Qb003RTVocjR1MENBd0VBQWFOQ01FQXdEZ1lEVlIwUEFRSC9CQVFEQWdJRU1BOEcKQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUVGQkxZblRsby9mdlNGU3ZPQWVkRzZzK2c0VnlqTUEwRwpDU3FHU0liM0RRRUJDd1VBQTRJQmdRQjhyeUliRlRmN3VoVld6NjFoWEVWRHlwaFRaZGsvbFlra2FPNmwxTUhoCmRPNjBFNmNad2RaaTZiOTJOajNQNktVT053eDJzQ3VMTUR1eERvVm9aajlWUFNmanRNZ1lsR2RCV3pLM3l6TlYKb3FWdm9tdWFHb2ZaYzFuaWdscUFCMXpPZkI0d25wa2FsZ1BXL1dxT0hPbmdxT1Vwck5pN2hpRGNLTHgvZ0kvago1YWpVMGFLek92M2hobm5GN2NlYXZ0Tmd1eGhVUTB2MTZnSTh6cnJHc0NTOW9ldi8wMm83ekNLeUxDYkM0WU5ICm1XaXBEenViSSsyTkZiOFZ3MlNHUG5Va0NqdWJZTDBVSE5veWxvbkh5dUVPbDRmZXFVQnRMeWorZWphWVdEKzQKZ0J1algyR2x2amllcjUzV3VOWUg4bEFYS1JtTHkxcUdvQmszaDNhVFVPZ1JhUG5LRFhMdTNOVjFReUpOcCtyMQpVRlJucE1NZW5LbENFYWZCYW9Cb1RYZTY0VU5Fcitqam5JZ21RRytMbEJuaFhwT3haRVgzU0NCdTFvTlB5Mk5NCkRsVWFWNTJ0TGRocHpERU9nV29PWGxNWlc5bE52ZlBiZDg4OVRTcWRONzBlSm8zVlBwKzJkMnhzOGx5emZhNzUKYTBvWFM5WWJWYzRnSDZPMVRBaWlJUkU9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+              }
+            ],
+            "master_authorized_networks_config": [],
+            "master_version": "1.33.5-gke.1201000",
+            "mesh_certificates": [],
+            "min_master_version": null,
+            "monitoring_config": [
+              {
+                "advanced_datapath_observability_config": [
+                  {
+                    "enable_metrics": false,
+                    "relay_mode": ""
+                  }
+                ],
+                "enable_components": [
+                  "SYSTEM_COMPONENTS",
+                  "JOBSET",
+                  "STORAGE",
+                  "HPA",
+                  "POD",
+                  "DAEMONSET",
+                  "DEPLOYMENT",
+                  "STATEFULSET",
+                  "KUBELET",
+                  "CADVISOR",
+                  "DCGM"
+                ],
+                "managed_prometheus": [
+                  {
+                    "enabled": true
+                  }
+                ]
+              }
+            ],
+            "monitoring_service": "monitoring.googleapis.com/kubernetes",
+            "name": "inner-replica-469607-h9-new-gke",
+            "network": "projects/inner-replica-469607-h9/global/networks/default",
+            "network_policy": [
+              {
+                "enabled": false,
+                "provider": "PROVIDER_UNSPECIFIED"
+              }
+            ],
+            "networking_mode": "VPC_NATIVE",
+            "node_config": [
+              {
+                "advanced_machine_features": [],
+                "boot_disk_kms_key": "",
+                "confidential_nodes": [],
+                "disk_size_gb": 30,
+                "disk_type": "pd-balanced",
+                "effective_taints": [],
+                "ephemeral_storage_local_ssd_config": [],
+                "fast_socket": [],
+                "gcfs_config": [],
+                "guest_accelerator": [],
+                "gvnic": [],
+                "host_maintenance_policy": [],
+                "image_type": "COS_CONTAINERD",
+                "kubelet_config": [
+                  {
+                    "cpu_cfs_quota": false,
+                    "cpu_cfs_quota_period": "",
+                    "cpu_manager_policy": "",
+                    "pod_pids_limit": 0
+                  }
+                ],
+                "labels": {},
+                "linux_node_config": [],
+                "local_nvme_ssd_block_config": [],
+                "local_ssd_count": 0,
+                "logging_variant": "DEFAULT",
+                "machine_type": "e2-standard-4",
+                "metadata": {
+                  "disable-legacy-endpoints": "true"
+                },
+                "min_cpu_platform": "",
+                "node_group": "",
+                "oauth_scopes": [
+                  "https://www.googleapis.com/auth/devstorage.read_only",
+                  "https://www.googleapis.com/auth/logging.write",
+                  "https://www.googleapis.com/auth/monitoring",
+                  "https://www.googleapis.com/auth/service.management.readonly",
+                  "https://www.googleapis.com/auth/servicecontrol",
+                  "https://www.googleapis.com/auth/trace.append"
+                ],
+                "preemptible": true,
+                "reservation_affinity": [],
+                "resource_labels": {
+                  "goog-gke-node-pool-provisioning-model": "spot"
+                },
+                "service_account": "default",
+                "shielded_instance_config": [
+                  {
+                    "enable_integrity_monitoring": true,
+                    "enable_secure_boot": false
+                  }
+                ],
+                "sole_tenant_config": [],
+                "spot": false,
+                "tags": [],
+                "taint": [],
+                "workload_metadata_config": []
+              }
+            ],
+            "node_locations": [],
+            "node_pool": [
+              {
+                "autoscaling": [],
+                "initial_node_count": 2,
+                "instance_group_urls": [
+                  "https://www.googleapis.com/compute/v1/projects/inner-replica-469607-h9/zones/europe-west3-a/instanceGroupManagers/gke-inner-replica-469607-my-node-pool-d2d512a7-grp"
+                ],
+                "managed_instance_group_urls": [
+                  "https://www.googleapis.com/compute/v1/projects/inner-replica-469607-h9/zones/europe-west3-a/instanceGroups/gke-inner-replica-469607-my-node-pool-d2d512a7-grp"
+                ],
+                "management": [
+                  {
+                    "auto_repair": true,
+                    "auto_upgrade": true
+                  }
+                ],
+                "max_pods_per_node": 110,
+                "name": "my-node-pool",
+                "name_prefix": "",
+                "network_config": [
+                  {
+                    "create_pod_range": false,
+                    "enable_private_nodes": false,
+                    "pod_cidr_overprovision_config": [],
+                    "pod_ipv4_cidr_block": "10.32.0.0/14",
+                    "pod_range": "gke-inner-replica-469607-h9-new-gke-pods-385b612a"
+                  }
+                ],
+                "node_config": [
+                  {
+                    "advanced_machine_features": [],
+                    "boot_disk_kms_key": "",
+                    "confidential_nodes": [],
+                    "disk_size_gb": 30,
+                    "disk_type": "pd-balanced",
+                    "effective_taints": [],
+                    "ephemeral_storage_local_ssd_config": [],
+                    "fast_socket": [],
+                    "gcfs_config": [],
+                    "guest_accelerator": [],
+                    "gvnic": [],
+                    "host_maintenance_policy": [],
+                    "image_type": "COS_CONTAINERD",
+                    "kubelet_config": [
+                      {
+                        "cpu_cfs_quota": false,
+                        "cpu_cfs_quota_period": "",
+                        "cpu_manager_policy": "",
+                        "pod_pids_limit": 0
+                      }
+                    ],
+                    "labels": {},
+                    "linux_node_config": [],
+                    "local_nvme_ssd_block_config": [],
+                    "local_ssd_count": 0,
+                    "logging_variant": "DEFAULT",
+                    "machine_type": "e2-standard-4",
+                    "metadata": {
+                      "disable-legacy-endpoints": "true"
+                    },
+                    "min_cpu_platform": "",
+                    "node_group": "",
+                    "oauth_scopes": [
+                      "https://www.googleapis.com/auth/devstorage.read_only",
+                      "https://www.googleapis.com/auth/logging.write",
+                      "https://www.googleapis.com/auth/monitoring",
+                      "https://www.googleapis.com/auth/service.management.readonly",
+                      "https://www.googleapis.com/auth/servicecontrol",
+                      "https://www.googleapis.com/auth/trace.append"
+                    ],
+                    "preemptible": true,
+                    "reservation_affinity": [],
+                    "resource_labels": {
+                      "goog-gke-node-pool-provisioning-model": "spot"
+                    },
+                    "service_account": "default",
+                    "shielded_instance_config": [
+                      {
+                        "enable_integrity_monitoring": true,
+                        "enable_secure_boot": false
+                      }
+                    ],
+                    "sole_tenant_config": [],
+                    "spot": false,
+                    "tags": [],
+                    "taint": [],
+                    "workload_metadata_config": []
+                  }
+                ],
+                "node_count": 2,
+                "node_locations": [
+                  "europe-west3-a"
+                ],
+                "placement_policy": [],
+                "upgrade_settings": [
+                  {
+                    "blue_green_settings": [],
+                    "max_surge": 1,
+                    "max_unavailable": 0,
+                    "strategy": "SURGE"
+                  }
+                ],
+                "version": "1.33.5-gke.1201000"
+              }
+            ],
+            "node_pool_auto_config": [
+              {
+                "network_tags": []
+              }
+            ],
+            "node_pool_defaults": [
+              {
+                "node_config_defaults": [
+                  {
+                    "logging_variant": "DEFAULT"
+                  }
+                ]
+              }
+            ],
+            "node_version": "1.33.5-gke.1201000",
+            "notification_config": [
+              {
+                "pubsub": [
+                  {
+                    "enabled": false,
+                    "filter": [],
+                    "topic": ""
+                  }
+                ]
+              }
+            ],
+            "operation": null,
+            "private_cluster_config": [
+              {
+                "enable_private_endpoint": false,
+                "enable_private_nodes": false,
+                "master_global_access_config": [
+                  {
+                    "enabled": false
+                  }
+                ],
+                "master_ipv4_cidr_block": "",
+                "peering_name": "",
+                "private_endpoint": "10.156.15.196",
+                "private_endpoint_subnetwork": "",
+                "public_endpoint": "34.89.221.251"
+              }
+            ],
+            "private_ipv6_google_access": "",
+            "project": "inner-replica-469607-h9",
+            "release_channel": [
+              {
+                "channel": "REGULAR"
+              }
+            ],
+            "remove_default_node_pool": true,
+            "resource_labels": {},
+            "resource_usage_export_config": [],
+            "security_posture_config": [
+              {
+                "mode": "BASIC",
+                "vulnerability_mode": "VULNERABILITY_MODE_UNSPECIFIED"
+              }
+            ],
+            "self_link": "https://container.googleapis.com/v1/projects/inner-replica-469607-h9/zones/europe-west3-a/clusters/inner-replica-469607-h9-new-gke",
+            "service_external_ips_config": [
+              {
+                "enabled": false
+              }
+            ],
+            "services_ipv4_cidr": "34.118.224.0/20",
+            "subnetwork": "projects/inner-replica-469607-h9/regions/europe-west3/subnetworks/default",
+            "timeouts": null,
+            "tpu_ipv4_cidr_block": "",
+            "vertical_pod_autoscaling": [],
+            "workload_identity_config": []
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "master_auth"
+              },
+              {
+                "type": "index",
+                "value": {
+                  "value": 0,
+                  "type": "number"
+                }
+              },
+              {
+                "type": "get_attr",
+                "value": "client_key"
+              }
+            ]
+          ],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAwLCJkZWxldGUiOjI0MDAwMDAwMDAwMDAsInJlYWQiOjI0MDAwMDAwMDAwMDAsInVwZGF0ZSI6MzYwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMiJ9"
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_container_node_pool",
+      "name": "primary_preemptible_nodes",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "autoscaling": [],
+            "cluster": "inner-replica-469607-h9-new-gke",
+            "id": "projects/inner-replica-469607-h9/locations/europe-west3-a/clusters/inner-replica-469607-h9-new-gke/nodePools/my-node-pool",
+            "initial_node_count": 2,
+            "instance_group_urls": [
+              "https://www.googleapis.com/compute/v1/projects/inner-replica-469607-h9/zones/europe-west3-a/instanceGroupManagers/gke-inner-replica-469607-my-node-pool-d2d512a7-grp"
+            ],
+            "location": "europe-west3-a",
+            "managed_instance_group_urls": [
+              "https://www.googleapis.com/compute/v1/projects/inner-replica-469607-h9/zones/europe-west3-a/instanceGroups/gke-inner-replica-469607-my-node-pool-d2d512a7-grp"
+            ],
+            "management": [
+              {
+                "auto_repair": true,
+                "auto_upgrade": true
+              }
+            ],
+            "max_pods_per_node": 110,
+            "name": "my-node-pool",
+            "name_prefix": "",
+            "network_config": [
+              {
+                "create_pod_range": false,
+                "enable_private_nodes": false,
+                "pod_cidr_overprovision_config": [],
+                "pod_ipv4_cidr_block": "10.32.0.0/14",
+                "pod_range": "gke-inner-replica-469607-h9-new-gke-pods-385b612a"
+              }
+            ],
+            "node_config": [
+              {
+                "advanced_machine_features": [],
+                "boot_disk_kms_key": "",
+                "confidential_nodes": [],
+                "disk_size_gb": 30,
+                "disk_type": "pd-balanced",
+                "effective_taints": [],
+                "ephemeral_storage_local_ssd_config": [],
+                "fast_socket": [],
+                "gcfs_config": [],
+                "guest_accelerator": [],
+                "gvnic": [],
+                "host_maintenance_policy": [],
+                "image_type": "COS_CONTAINERD",
+                "kubelet_config": [
+                  {
+                    "cpu_cfs_quota": false,
+                    "cpu_cfs_quota_period": "",
+                    "cpu_manager_policy": "",
+                    "pod_pids_limit": 0
+                  }
+                ],
+                "labels": {},
+                "linux_node_config": [],
+                "local_nvme_ssd_block_config": [],
+                "local_ssd_count": 0,
+                "logging_variant": "DEFAULT",
+                "machine_type": "e2-standard-4",
+                "metadata": {
+                  "disable-legacy-endpoints": "true"
+                },
+                "min_cpu_platform": "",
+                "node_group": "",
+                "oauth_scopes": [
+                  "https://www.googleapis.com/auth/devstorage.read_only",
+                  "https://www.googleapis.com/auth/logging.write",
+                  "https://www.googleapis.com/auth/monitoring",
+                  "https://www.googleapis.com/auth/service.management.readonly",
+                  "https://www.googleapis.com/auth/servicecontrol",
+                  "https://www.googleapis.com/auth/trace.append"
+                ],
+                "preemptible": true,
+                "reservation_affinity": [],
+                "resource_labels": {
+                  "goog-gke-node-pool-provisioning-model": "spot"
+                },
+                "service_account": "default",
+                "shielded_instance_config": [
+                  {
+                    "enable_integrity_monitoring": true,
+                    "enable_secure_boot": false
+                  }
+                ],
+                "sole_tenant_config": [],
+                "spot": false,
+                "tags": [],
+                "taint": [],
+                "workload_metadata_config": []
+              }
+            ],
+            "node_count": 2,
+            "node_locations": [
+              "europe-west3-a"
+            ],
+            "operation": null,
+            "placement_policy": [],
+            "project": "inner-replica-469607-h9",
+            "timeouts": null,
+            "upgrade_settings": [
+              {
+                "blue_green_settings": [],
+                "max_surge": 1,
+                "max_unavailable": 0,
+                "strategy": "SURGE"
+              }
+            ],
+            "version": "1.33.5-gke.1201000"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInVwZGF0ZSI6MTgwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "google_container_cluster.quangtp-gke"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}

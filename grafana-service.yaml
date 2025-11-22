@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+    meta.helm.sh/release-name: prometheus
+    meta.helm.sh/release-namespace: model-serving
+  creationTimestamp: "2025-11-17T16:16:28Z"
+  labels:
+    app.kubernetes.io/instance: prometheus
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/version: 12.2.1
+    helm.sh/chart: grafana-10.1.4
+  name: prometheus-grafana
+  namespace: model-serving
+  resourceVersion: "1763396189041295013"
+  uid: e3f81cd5-a7e1-4178-ba54-41a0e3939c34
+spec:
+  clusterIP: 34.118.230.91
+  clusterIPs:
+  - 34.118.230.91
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: http-web
+    port: 80
+    protocol: TCP
+    targetPort: grafana
+  selector:
+    app.kubernetes.io/instance: prometheus
+    app.kubernetes.io/name: grafana
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
